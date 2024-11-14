@@ -13,8 +13,9 @@ model Player {
   statistics    String
   class     String
   currency  Int
-  userId    Int        @unique
+  userId    Int        
   user      User       @relation(fields: [userId], references: [id])
+  @@index([userId])
 }
 
 model User {

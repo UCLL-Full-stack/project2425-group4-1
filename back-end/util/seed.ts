@@ -131,6 +131,7 @@ const players = [
 ];
 
 const main = async () => {
+    await prisma.player.deleteMany();
     await prisma.user.deleteMany();
 
     const xanderPrisma = await prisma.user.create({
