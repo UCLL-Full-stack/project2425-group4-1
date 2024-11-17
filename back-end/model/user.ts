@@ -63,4 +63,21 @@ export class User {
         const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         return expression.test(email);
     }
+
+    static from(userPrisma: {
+        id: number;
+        name: string;
+        email: string;
+        password: string;
+        birthday: Date;
+    }) {
+        const user = new User({
+            name: userPrisma.name,
+            email: userPrisma.email,
+            password: userPrisma.password,
+            birthday: userPrisma.birthday,
+        });
+        user.id = userPrisma.id;
+        return user;
+    }
 }

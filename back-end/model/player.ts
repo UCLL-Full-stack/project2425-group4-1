@@ -1,10 +1,11 @@
+import { Player as PlayerPrisma, User as UserPrisma } from '@prisma/client';
 import { User } from './user';
 
 export class Player {
     private id?: number;
     private name: string;
     private statistics: string; // still needs to be expended upon
-    private class: string; // will later be a Class type
+    private playerClass: string; // will later be a Class type
     private currency: number;
     private user: User;
 
@@ -12,7 +13,7 @@ export class Player {
         id?: number;
         name: string;
         statistics: string;
-        class: string;
+        playerClass: string;
         currency: number;
         user: User;
     }) {
@@ -21,7 +22,7 @@ export class Player {
         this.id = player.id;
         this.name = player.name;
         this.statistics = player.statistics;
-        this.class = player.class;
+        this.playerClass = player.playerClass;
         this.currency = player.currency;
         this.user = player.user;
     }
@@ -39,7 +40,7 @@ export class Player {
     }
 
     getClass(): string {
-        return this.class;
+        return this.playerClass;
     }
 
     getCurrency(): number {
@@ -53,7 +54,7 @@ export class Player {
     validate(player: {
         name: string;
         statistics: string;
-        class: string;
+        playerClass: string;
         currency: number;
         user: User;
     }) {
@@ -63,7 +64,7 @@ export class Player {
         if (!player.statistics) {
             throw new Error('Statistics are required.');
         }
-        if (!player.class) {
+        if (!player.playerClass) {
             throw new Error('Class is required.');
         }
         if (player.currency < 0) {
@@ -72,5 +73,23 @@ export class Player {
         if (!player.user) {
             throw new Error('A correct user is required.');
         }
+    }
+
+    static from({
+        id,
+        name,
+        statistics,
+        class: class,
+        currency,
+        user,
+    }: PlayerPrisma & { user: User }) {
+        return new Player({
+            id,
+            name,
+            statistics,
+            playerClass,
+            currency,
+            user,
+        });
     }
 }
