@@ -59,7 +59,6 @@ const CharacterCreationForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Character created:", player);
     if (loggedInUser && player){
       const input: PlayerInput = {name: player.name, currency: player.currency, statistics: player.statistics, class:player.class, image: player.image, userEmail: loggedInUser.email}
       const response = await playerService.createPlayer(input);

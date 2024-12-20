@@ -36,7 +36,6 @@ const CharacterSelection: React.FC = () => {
     }
 
     const deleteCharacter = async (character: Player) => {
-        console.log(character.id);
         const res = await playerService.deletePlayer(character.id);
         localStorage.removeItem("selectedCharacter");
         setDetect(!detectChange);

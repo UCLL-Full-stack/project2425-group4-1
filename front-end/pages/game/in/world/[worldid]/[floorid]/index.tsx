@@ -30,7 +30,6 @@ const GameMap: React.FC = () => {
             if (floor && player){
                 event.preventDefault();
                 const prev = playerPosition;
-                console.log(prev)
                 if (!prev){
                     return;
                 }
@@ -204,7 +203,6 @@ const GameMap: React.FC = () => {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            console.log(world);
             if (showBattleScreen) return;
             const now = Date.now();
             if (now - lastMoveTime < 200){
