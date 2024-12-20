@@ -13,8 +13,11 @@ const Home: React.FC = () => {
             </Head>
             <Header></Header>
             <main className="text-center md:mt-24 mx-auto md:w-3/5 lg:w-1/2">
-                <span className="flex flex-row justify-center items-center">
-                <p></p>
+                <span className="flex flex-col justify-center items-center">
+                <h2>Our Full-stack game</h2>
+                <p>Welcome to our game, this is a game made fully in typescript by Cedric Van Uytsel and Xander D'Hondt as a school project.</p>
+                <p>You can control the character with the arrow keys.</p>
+                <p>Can you get on top of the leaderboard?</p>
                 </span>
             </main>
         </>

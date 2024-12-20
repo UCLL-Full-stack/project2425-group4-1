@@ -45,7 +45,7 @@ app.use(
             })(),
         algorithms: ['HS256'],
     }).unless({
-        path: ['/api-docs', /^\/api-docs\/.*/, '/users/login', '/users/signup'],
+        path: ['/api-docs', /^\/api-docs\/.*/, '/users/login', '/users/signup', '/players'],
     })
 );
 

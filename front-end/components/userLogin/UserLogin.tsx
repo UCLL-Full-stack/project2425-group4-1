@@ -143,6 +143,41 @@ const UserLogin: React.FC = () => {
                     No account, register here
                 </a>
             </form>
+            <table className="min-w-full">
+                <thead className="bg-gray-50">
+                    <tr>
+                        <th scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            E-mail
+                        </th>
+                        <th scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Password
+                        </th>
+                        <th scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Role
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <td className="px-6 py-4 whitespace-nowrap">alice@example.com</td>
+                        <td className="px-6 py-4 whitespace-nowrap">password123</td>
+                        <td className="px-6 py-4 whitespace-nowrap">user</td>
+                    </tr>
+                    <tr>
+                        <td className="px-6 py-4 whitespace-nowrap">alnea@example.com</td>
+                        <td className="px-6 py-4 whitespace-nowrap">password0223</td>
+                        <td className="px-6 py-4 whitespace-nowrap">premiumUser</td>
+                    </tr>
+                    <tr>
+                        <td className="px-6 py-4 whitespace-nowrap">cedric@example.com</td>
+                        <td className="px-6 py-4 whitespace-nowrap">password59600</td>
+                        <td className="px-6 py-4 whitespace-nowrap">admin</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 };

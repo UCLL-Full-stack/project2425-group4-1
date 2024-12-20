@@ -46,21 +46,6 @@ const Overview: React.FC = () => {
                                 <td>{player.currency}</td>
                             </tr>
                         ))}
-                        {user ? (
-                            <>
-                                {top10.includes(user) ? (
-                                    <></>
-                                ) : (
-                                    <tr>
-                                        <td>You</td>
-                                        <td>{user.name}</td>
-                                        <td>{user.score}</td>
-                                    </tr>
-                                )}
-                            </>
-                        ) : (
-                            <p>No user logged in</p>
-                        )}
                     </tbody>
                 </table>
             ) : (

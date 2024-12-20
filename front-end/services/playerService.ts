@@ -1,13 +1,10 @@
 import { PlayerInput } from "@types";
 
 const getAllPlayers = async () => {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    const token = loggedInUser.token;
     return await fetch(process.env.NEXT_PUBLIC_API_URL + '/players', {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
-            Authorization: `Bearer ${token}`,
         },
     });
 };
