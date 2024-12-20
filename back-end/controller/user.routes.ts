@@ -213,14 +213,4 @@ userRouter.post('/login', async (req: Request, res: Response, next: NextFunction
 //  *         description: Server error
 //  */
 
-// userRouter.put('update/:email', async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//         const user = <UserInput>req.body;
-//         const updatedUser = await userService.updateUser(user);
-//         res.status(200).json(updatedUser);
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-
 export { userRouter };
