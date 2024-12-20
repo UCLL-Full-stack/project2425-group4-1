@@ -99,20 +99,27 @@ const GameMap: React.FC = () => {
 
     const getPositions = async() => {
         if (floor){
-            const res = await floorService.getFloorPositions(floor.id);
-            setPositions(res);
+            let res = await floorService.getFloorPositions(floor.id);
             res.forEach(async pos => {
                 if (pos.type === "player" && pos.active === true){
                     if (pos.playerID === player?.id){
                         setPlayerPosition({x: pos.x, y: pos.y, posID: pos.id});
                     }
                     else{
-                        if (pos.playerID){
-                            pos.image = await playerService.getPlayerImage(pos.playerID);
+                        if (pos.playerID && positions){ 
+                            positions.forEach(position => {
+                                if (pos.id === position.id){
+                                    pos.image = position.image;
+                                }
+                            })
+                            console.log(pos.image);
+                            if (!pos.image || pos.image === "") pos.image = await playerService.getPlayerImage(pos.playerID);
+                            console.log(pos.image);
                         }
                     }
                 }
             });
+            setPositions(res);
         }
     }
 

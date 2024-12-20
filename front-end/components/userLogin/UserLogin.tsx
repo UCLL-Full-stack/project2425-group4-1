@@ -168,7 +168,7 @@ const UserLogin: React.FC = () => {
                     </tr>
                     <tr>
                         <td className="px-6 py-4 whitespace-nowrap">alnea@example.com</td>
-                        <td className="px-6 py-4 whitespace-nowrap">password0223</td>
+                        <td className="px-6 py-4 whitespace-nowrap">password1234</td>
                         <td className="px-6 py-4 whitespace-nowrap">premiumUser</td>
                     </tr>
                     <tr>
