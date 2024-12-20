@@ -1,8 +1,7 @@
 import { Auth, User } from '@types';
 
 const getAllUsers = async () => {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    const token = loggedInUser.token;
+    const token = localStorage.getItem('loggedInUser');
     return await fetch(process.env.NEXT_PUBLIC_API_URL + '/users', {
         method: 'GET',
         headers: {
