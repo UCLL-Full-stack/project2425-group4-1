@@ -210,5 +210,17 @@ floorRouter.put(
  *       required:
  *         - name
  */
+floorRouter.post('/:id/position', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const position = <PositionInput>req.body;
+        const result = await floorService.addPosition(position);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({
+            status: '400',
+            errorMessage: `Something went wrong with updating the position.`,
+        });
+    }
+})
 
 export { floorRouter };

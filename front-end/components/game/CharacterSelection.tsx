@@ -13,7 +13,13 @@ const CharacterSelection: React.FC = () => {
 
     const getCharacters = async () => {
         if (loggedInUser){
-            setCharacters(await playerService.getPlayersFromUser(loggedInUser.email));
+            if (loggedInUser.role && loggedInUser.role === "admin"){
+                const res = await playerService.getAllPlayers()
+                setCharacters(await res.json());
+            }
+            else {
+                setCharacters(await playerService.getPlayersFromUser(loggedInUser.email));
+            }
         }
     }
 
@@ -57,7 +63,18 @@ const CharacterSelection: React.FC = () => {
     }
 
     if (characters.length <= 0){
-        return <p>Please make a player character first</p>
+        return (
+            <>
+            <p>Please make a player character first</p>
+            <button onClick={() => router.push("/game/characters/new")}
+                className="
+                border-solid hover:border-dotted border-2 border-green-500 hover:border-green-600
+                rounded p-4 content-center m-4 bg-green-200 hover:bg-green-300"
+            >
+                Create Character
+            </button>
+            </>
+        )
     }
 
     return (

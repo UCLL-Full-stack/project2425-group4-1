@@ -11,6 +11,7 @@ const WorldSelection: React.FC = () => {
     const [userWorlds, setUserWorlds] = useState<World[]>();
     const [allWorldsMinusUser, setAllWorldsMinusUser] = useState<World[]>();
     const [allWorlds, setAllWorlds] = useState<World[]>();
+    const [selectedCharacter, setSelectedCharacter] = useState<Player>();
 
     const getWorlds = async () => {
         if (loggedInUser){
@@ -40,6 +41,17 @@ const WorldSelection: React.FC = () => {
         router.push("/game/in/world/" + id);
     }
 
+    const getSelectedCharacter = async () => {
+        const select = localStorage.getItem('selectedCharacter');
+        if (select) {
+            setSelectedCharacter(await playerService.getPlayerById(select));
+        }
+    }
+
+    useEffect(() => {
+        getSelectedCharacter();
+    }, []);
+
     useEffect(() => {
         getWorlds();
     }, [loggedInUser]);
@@ -68,11 +80,20 @@ const WorldSelection: React.FC = () => {
         return <p>Loading other people's worlds...</p>
     }
 
+    if (!selectedCharacter){
+        return <p>Please select a character first.</p>
+    }
+
     return (
         <div className="flex flex-col items-center justify-center ">
             <p className='text-2xl m-6'>Your Worlds</p>
             {userWorlds.length <= 0 ? (
+                <>
                 <p>You have no worlds</p>
+                <div className='border-solid hover:border-dotted border-2 border-green-500 rounded h-24 w-60 content-center m-2 bg-green-200' onClick={() => router.push("/game/worlds/new")}>
+                <p className='text-2xl'>Create New World</p>
+                </div>
+                </>
             ):(
                 <div className='flex flex-row flex-wrap justify-center'>
                 {userWorlds.map((world, index) => (

@@ -1,4 +1,4 @@
-import { PlayerInput, User } from "@types";
+import { Player, PlayerInput, User } from "@types";
 import playerService from '@services/playerService';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -7,6 +7,7 @@ const CharacterCreationForm: React.FC = () => {
   const router = useRouter();
   const [loggedInUser, setLoggedInUser] = useState<User>();
   const [statusMessages, setStatusMessages] = useState({ message: '', type: '' });
+  const [characters, setCharacters] = useState<Player[]>();
 
   const [player, setPlayer] = useState<PlayerInput>({
     name: "",
@@ -24,6 +25,12 @@ const CharacterCreationForm: React.FC = () => {
     "ch2",
     "ch3",
   ];
+
+  const getCharacters = async () => {
+    if (loggedInUser){
+      setCharacters(await playerService.getPlayersFromUser(loggedInUser.email));
+    }
+  }
 
   const clearErrors = () => {
     setStatusMessages({ message: '', type: '' });
@@ -45,6 +52,10 @@ const CharacterCreationForm: React.FC = () => {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    getCharacters();
+  }, [loggedInUser]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,6 +79,10 @@ const CharacterCreationForm: React.FC = () => {
       }
     }
   };
+
+  if(loggedInUser && loggedInUser.role && loggedInUser.role === "user" && characters && characters.length > 0){
+    return (<p>As a non-premium user you are not allowed to make more than 1 character.</p>)
+  }
 
   return (
     <div className="flex flex-col justify-center">
